@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="Rina:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Rina.war">
+      <element id="artifact" artifact-name="Rina:war exploded" />
+    </root>
+  </artifact>
+</component>

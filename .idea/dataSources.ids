@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="H2 - semester" uuid="5eaf73ad-f012-4483-86d5-1f4932a8af3d">
+    <database-info product="H2" version="1.3.175 (2014-01-18)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.175 (2014-01-18)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PUBLIC" catalog="SEMESTER"/>
+    <table name="CWORK" schema="PUBLIC" catalog="SEMESTER" type="TABLE">
+      <column name="PERSONID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="WORKBEGIN" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DEGREEYES" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
+      <column name="DEGREE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="RANK" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="POST" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMMENT" sqlType="CLOB" precision="20" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="INSTITUTE" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DEPARTMENT" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <foreign-key name="CONSTRAINT_3" columns="PERSONID" ref-table="PERSON" ref-schema="PUBLIC" ref-catalog="SEMESTER" ref-columns="PERSONID" update-rule="1" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="EDUCATION" schema="PUBLIC" catalog="SEMESTER" type="TABLE">
+      <column name="PERSONID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="EDUCATION" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="YEAR" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SPECIALITY" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <foreign-key name="CONSTRAINT_9" columns="PERSONID" ref-table="PERSON" ref-schema="PUBLIC" ref-catalog="SEMESTER" ref-columns="PERSONID" update-rule="1" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="LWORK" schema="PUBLIC" catalog="SEMESTER" type="TABLE">
+      <column name="PERSONID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="WORKPLACE" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WORKADDRESS" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WORPHONE" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REASON" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PENALTY" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="REWARDS" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="WORKBEGIN" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="WORKEND" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <foreign-key name="CONSTRAINT_4" columns="PERSONID" ref-table="PERSON" ref-schema="PUBLIC" ref-catalog="SEMESTER" ref-columns="PERSONID" update-rule="1" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="PERSON" schema="PUBLIC" catalog="SEMESTER" type="TABLE">
+      <column name="PERSONID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NAME" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BIRTH" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="PLACE" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ADDRESS" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PHONE" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PASSPORT" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PASSPORTDATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="REGION" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="CONSTRAINT_8" columns="PERSONID"/>
+      <exported-key name="CONSTRAINT_3" table="CWORK" schema="PUBLIC" catalog="SEMESTER" columns="PERSONID"/>
+      <exported-key name="CONSTRAINT_9" table="EDUCATION" schema="PUBLIC" catalog="SEMESTER" columns="PERSONID"/>
+      <exported-key name="CONSTRAINT_4" table="LWORK" schema="PUBLIC" catalog="SEMESTER" columns="PERSONID"/>
+    </table>
+  </data-source>
+</component>
