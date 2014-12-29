@@ -15,118 +15,164 @@
 <body>
 
 <c:if test="${!empty listDepartments}">
-  <form action="/info" method="post">
-      <select name="department">
-        <c:forEach items="${listDepartments}" var="w">
-          <option value="${w}">${w}</option>
-        </c:forEach>
-        <input type="submit"/>
-      </select>
-  </form>
+    <form action="/info" method="post">
+        <select name="department">
+            <c:forEach items="${listDepartments}" var="w">
+                <option value="${w}">${w}</option>
+            </c:forEach>
+            <input type="submit"/>
+        </select>
+    </form>
 </c:if>
 
 <c:if test="${!empty departmentInfo}">
-  <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Degree</th>
-        <th>Post</th>
-        <th>Name</th>
-        <th>Department</th>
-        <th>Place</th>
-        <th>Institute</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach var="w" items="${departmentInfo}">
+    <table>
+        <thead>
         <tr>
-          <td>${w.rank}</td>
-          <td>${w.degree}</td>
-          <td>${w.post}</td>
-          <td>${w.name}</td>
-          <td>${w.department}</td>
-          <td>${w.place}</td>
-          <td>${w.institute}</td>
+            <th>Rank</th>
+            <th>Degree</th>
+            <th>Post</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Place</th>
+            <th>Institute</th>
         </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
+        <c:forEach var="w" items="${departmentInfo}">
+            <tr>
+                <td>${w.rank}</td>
+                <td>${w.degree}</td>
+                <td>${w.post}</td>
+                <td>${w.name}</td>
+                <td>${w.department}</td>
+                <td>${w.place}</td>
+                <td>${w.institute}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+
+<c:if test="${!empty last}">
+    <table>
+        <thead>
+
+        <td>
+        <th>Year</th>
+        <th>Count by year</th>
+
+        </td>
+        </thead>
+        <tbody>
+            <c:forEach var="w" items="${last}">
+                <tr>
+                    <td>${w.max}</td>
+                    <td>${w.count}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</c:if>
+
+<c:if test="${!empty first}">
+    <table>
+        <thead>
+        <tr>
+            <th>Work Place</th>
+            <th>Work Address</th>
+            <th>Name</th>
+            <th>Reason</th>
+            <th>Passport</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${first}" var="w">
+            <tr>
+                <td>${w.workplace}</td>
+                <td>${w.workaddress}</td>
+                <td>${w.name}</td>
+                <td>${w.reason}</td>
+                <td>${w.passport}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </c:if>
 
 
 <c:if test="${!empty listDepartments2}">
-  Получить информацию о сотрудниках со следующего предприятия
-  <form action="/departInfo" method="post">
-    <select name="department">
-      <c:forEach var="w" items="${listDepartments2}">
-        <option value="${w}">${w}</option>
-      </c:forEach>
-    </select>
-    <input type="submit">
-  </form>
+    Получить информацию о сотрудниках со следующего предприятия
+    <form action="/departInfo" method="post">
+        <select name="department">
+            <c:forEach var="w" items="${listDepartments2}">
+                <option value="${w}">${w}</option>
+            </c:forEach>
+        </select>
+        <input type="submit">
+    </form>
 </c:if>
 
 <c:if test="${!empty workerInfoList}">
-  <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Department</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Region</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach var="w" items="${workerInfoList}">
+    <table>
+        <thead>
         <tr>
-          <td>${w.rank}</td>
-          <td>${w.department}</td>
-          <td>${w.name}</td>
-          <td>${w.address}</td>
-          <td>${w.phone}</td>
-          <td>${w.region}</td>
+            <th>Rank</th>
+            <th>Department</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Region</th>
         </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
+        <c:forEach var="w" items="${workerInfoList}">
+            <tr>
+                <td>${w.rank}</td>
+                <td>${w.department}</td>
+                <td>${w.name}</td>
+                <td>${w.address}</td>
+                <td>${w.phone}</td>
+                <td>${w.region}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </c:if>
 
 <c:if test="${!empty works}">
-  Выбрать предприятия, для которого нужно вывести информацию:
-  <form action="/workInfo" method="post">
-    <select name="work">
-      <c:forEach var="w" items="${works}">
-        <option value="${w}">${w}</option>
-      </c:forEach>
-    </select>
-    <input type="submit">
-  </form>
+    Выбрать предприятия, для которого нужно вывести информацию:
+    <form action="/workInfo" method="post">
+        <select name="work">
+            <c:forEach var="w" items="${works}">
+                <option value="${w}">${w}</option>
+            </c:forEach>
+        </select>
+        <input type="submit">
+    </form>
 </c:if>
 
 <c:if test="${!empty infoWorks}">
-  <table>
-    <thead>
-      <tr>
-        <th>Work Place</th>
-        <th>Work Address</th>
-        <th>Work Phome</th>
-        <th>Work Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach items="${infoWorks}" var="w">
+    <table>
+        <thead>
         <tr>
-          <td>${w.workPlace}</td>
-          <td>${w.workAddress}</td>
-          <td>${w.workPhone}</td>
-          <td>${w.reason}</td>
+            <th>Work Place</th>
+            <th>Work Address</th>
+            <th>Work Phome</th>
+            <th>Work Reason</th>
         </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
+        <c:forEach items="${infoWorks}" var="w">
+            <tr>
+                <td>${w.workPlace}</td>
+                <td>${w.workAddress}</td>
+                <td>${w.workPhone}</td>
+                <td>${w.reason}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </c:if>
 
 </body>

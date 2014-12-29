@@ -31,6 +31,15 @@ public class MainController {
         return "second";
     }
 
-//    @RequestMapping(value = "sFirst")
-//    public String
+    @RequestMapping(value = "sFirst")
+    public String getFirst(ModelMap model) {
+        model = new Worker().first(model);
+        return "second";
+    }
+
+    @RequestMapping(value = "last")
+    public String getLast(ModelMap model) {
+        model = new Worker().last(model);
+        return "second";
+    }
 }

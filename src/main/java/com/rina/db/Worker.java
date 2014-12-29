@@ -1,8 +1,6 @@
 package com.rina.db;
 
-import com.rina.model.DepartInfoModel;
-import com.rina.model.DepartInfoWorker;
-import com.rina.model.Work;
+import com.rina.model.*;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
@@ -131,5 +129,45 @@ return modelMap;
         }
         model.addAttribute("workerInfoList", departInfoWorkers);
         return model;
+    }
+
+    public ModelMap first(ModelMap modelMap) {
+        List<ModelFirst> list = new ArrayList<ModelFirst>();
+        try {
+            ResultSet rs = connection.createStatement().executeQuery("SELECT * from LWork JOIN Person on Person.Personid = LWork.Personid ");
+            while (rs.next()) {
+                ModelFirst modelFirst = new ModelFirst();
+                modelFirst.setName(rs.getString("name"));
+                modelFirst.setPassport("passport");
+                modelFirst.setReason(rs.getString("reason"));
+                modelFirst.setWorkaddress(rs.getString("workaddress"));
+                modelFirst.setWorkplace(rs.getString("workplace"));
+                list.add(modelFirst);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        modelMap.addAttribute("first", list);
+        return modelMap;
+    }
+
+    public ModelMap last(ModelMap model) {
+        List<LastQuery> lastQueries = new ArrayList<LastQuery>();
+
+        try {
+            ResultSet rs = connection.createStatement().executeQuery("select max(Year) as max, count(CWork.Personid) as count FROM CWork JOIN Education ON CWork.Personid = Education.Personid GROUP BY CWork.Personid, Education");
+            while (rs.next()) {
+                LastQuery lastQuery =new LastQuery();
+                lastQuery.setCount(rs.getInt("count"));
+                lastQuery.setMax(rs.getInt("max"));
+                lastQueries.add(lastQuery);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("last", lastQueries);
+        return model;
+
     }
 }
