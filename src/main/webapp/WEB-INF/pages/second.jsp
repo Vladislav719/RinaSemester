@@ -54,5 +54,80 @@
   </table>
 </c:if>
 
+
+<c:if test="${!empty listDepartments2}">
+  Получить информацию о сотрудниках со следующего предприятия
+  <form action="/departInfo" method="post">
+    <select name="department">
+      <c:forEach var="w" items="${listDepartments2}">
+        <option value="${w}">${w}</option>
+      </c:forEach>
+    </select>
+    <input type="submit">
+  </form>
+</c:if>
+
+<c:if test="${!empty workerInfoList}">
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Department</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach var="w" items="${workerInfoList}">
+        <tr>
+          <td>${w.rank}</td>
+          <td>${w.department}</td>
+          <td>${w.name}</td>
+          <td>${w.address}</td>
+          <td>${w.phone}</td>
+          <td>${w.region}</td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</c:if>
+
+<c:if test="${!empty works}">
+  Выбрать предприятия, для которого нужно вывести информацию:
+  <form action="/workInfo" method="post">
+    <select name="work">
+      <c:forEach var="w" items="${works}">
+        <option value="${w}">${w}</option>
+      </c:forEach>
+    </select>
+    <input type="submit">
+  </form>
+</c:if>
+
+<c:if test="${!empty infoWorks}">
+  <table>
+    <thead>
+      <tr>
+        <th>Work Place</th>
+        <th>Work Address</th>
+        <th>Work Phome</th>
+        <th>Work Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach items="${infoWorks}" var="w">
+        <tr>
+          <td>${w.workPlace}</td>
+          <td>${w.workAddress}</td>
+          <td>${w.workPhone}</td>
+          <td>${w.reason}</td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</c:if>
+
 </body>
 </html>

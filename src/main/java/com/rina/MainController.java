@@ -19,4 +19,18 @@ public class MainController {
         return "second";
     }
 
+    @RequestMapping(value = "workInfo")
+    public String infoWork(ModelMap modelMap, @RequestParam(required = false) String work) {
+        modelMap = new Worker().getWorkInfo(modelMap,work);
+        return "second";
+    }
+
+    @RequestMapping(value = "departInfo")
+    public String getDepartInfo(ModelMap modelMap, @RequestParam(required = false) String department) {
+        modelMap = new Worker().getInfoAboutWorkerInDepartment(modelMap,department);
+        return "second";
+    }
+
+//    @RequestMapping(value = "sFirst")
+//    public String
 }

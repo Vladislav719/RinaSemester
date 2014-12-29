@@ -1,6 +1,8 @@
 package com.rina.db;
 
 import com.rina.model.DepartInfoModel;
+import com.rina.model.DepartInfoWorker;
+import com.rina.model.Work;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
@@ -55,5 +57,79 @@ return modelMap;
         }
         modelMap.addAttribute("departmentInfo", list);
         return modelMap;
+    }
+
+    public ModelMap getWorkInfo(ModelMap modelMap, String work) {
+        List<Work> listWorks = new ArrayList<Work>();
+        List<String> works =new ArrayList<String>();
+
+        if (work == null) {
+            try {
+                ResultSet rs = connection.createStatement().executeQuery("SELECT DISTINCT Workplace from LWork");
+                while (rs.next())
+                    works.add(rs.getString("workplace"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            modelMap.addAttribute("works", works);
+            return modelMap;
+        }
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT Workplace, Workaddress, WORPHONE, Reason FROM LWork WHERE Workplace = ?");
+            statement.setString(1, work);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Work work1 = new Work();
+                work1.setReason(rs.getString("reason"));
+                work1.setWorkAddress(rs.getString("workaddress"));
+                work1.setWorkPhone(rs.getString("worphone"));
+                work1.setWorkPlace(rs.getString("workplace"));
+                listWorks.add(work1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        modelMap.addAttribute("infoWorks", listWorks);
+        return modelMap;
+
+    }
+
+    public ModelMap getInfoAboutWorkerInDepartment(ModelMap model, String department) {
+        List<String> departments = new ArrayList<String>();
+        List<DepartInfoWorker> departInfoWorkers = new ArrayList<DepartInfoWorker>();
+        if (department == null) {
+            try {
+                ResultSet rs = connection.createStatement().executeQuery("SELECT DISTINCT DEPARTMENT from CWORK");
+                while (rs.next()) {
+                    departments.add(rs.getString("department"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            model.addAttribute("listDepartments2", departments);
+            return model;
+        }
+
+        try {
+            PreparedStatement prepared =connection.prepareStatement("select * from CWork JOIN Person on Person.Personid = CWork.Personid where Department = ?");
+            prepared.setString(1, department);
+            ResultSet rs = prepared.executeQuery();
+            while (rs.next()) {
+                DepartInfoWorker departInfoWorker =new DepartInfoWorker();
+                departInfoWorker.setRank(rs.getInt("rank"));
+                departInfoWorker.setAddress(rs.getString("address"));
+                departInfoWorker.setDepartment(rs.getString("department"));
+                departInfoWorker.setName(rs.getString("name"));
+                departInfoWorker.setPhone(rs.getString("phone"));
+                departInfoWorker.setRegion(rs.getString("region"));
+                departInfoWorkers.add(departInfoWorker);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("workerInfoList", departInfoWorkers);
+        return model;
     }
 }
